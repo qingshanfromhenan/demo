@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.3.RELEASE</version>
+		<relativePath />
+	</parent>
+	
+	<groupId>com.qingsha.property</groupId>
+	<artifactId>ddmicroserver</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	
+	<name>ddmicroserver</name>
+    <description>微服务</description>
+
+	<modules>
+		<module>server/eureka</module><!-- 服务发现(服务中心) -->
+		<module>service/sms</module><!-- 用户服务(短信服务) -->
+		<module>service/user</module><!-- 用户服务(用户管理服务) -->
+		<module>service/ribbon</module><!-- 负载均衡服务+断路器  ribbon+restTemplate+Hystrix -->
+		<module>service/feign</module><!-- 负载均衡服务,自带断路器 feign默认集成ribbon -->
+		<module>service/zuul</module><!-- 服务网关,路由(带过滤功能) -->
+		<module>config/server</module><!-- 配置服务中心 -->
+		<module>config/client</module><!-- 服务网关,路由(带过滤功能) -->
+	</modules>
+	
+	<properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <spring-cloud.version>Finchley.SR2</spring-cloud.version>
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

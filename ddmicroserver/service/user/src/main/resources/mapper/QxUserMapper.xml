@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qs.property.mapper.IQxUserMapper">
+	<select id="findParentId" resultType="String">
+		SELECT gov_organization.id
+		FROM gov_organization
+		LEFT JOIN gov_org_user
+		ON
+		gov_org_user.orgId=gov_organization.id
+		WHERE gov_org_user.active='1'
+		and gov_organization.active='1'
+		and gov_organization.parentId in (#{0})
+	</select>
+	
+	<select id="findPerson" resultType="com.qs.property.entity.QxUserEntity" parameterType="string">
+		select qu.id ,qu.name
+		from qx_user qu
+		where qu.active=1
+	</select>
+</mapper>
